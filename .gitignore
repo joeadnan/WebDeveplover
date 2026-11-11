@@ -1,0 +1,10 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Environment Variables (SANGAT PENTING: Jangan sampai ter-upload ke GitHub)
+.env
+.env*.local
+.env.development
+.env.production
