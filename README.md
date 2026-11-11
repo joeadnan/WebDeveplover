@@ -8,6 +8,10 @@ tokokita-ecommerce-v2/
 ├── index.html        # Struktur markup HTML
 ├── style.css         # Berkas styling CSS3 dengan CSS Variables
 ├── app.js            # Logika SPA Router, State Management & Event Handling
+└── check-user.js     # Mengecek user yang telah terdaftar
+├── create-admin.js   # create role admin
+├── server.js         # endPoint, jwt, CRUD
+├── server            # Logika SPA Router, State Management & Event Handling
 └── README.md         # Dokumentasi petunjuk penggunaan
 ```
 
