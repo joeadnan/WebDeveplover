@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TokoKita - E-Commerce Vanilla JS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="#/" class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        TokoKita
+      </a>
+      <nav class="nav-links">
+        <a href="#/" class="nav-link">Katalog</a>
+        <a href="#/cart" class="nav-link">
+          Keranjang <span id="cart-count" class="cart-badge">0</span>
+        </a>
+        <a href="#/admin" class="nav-link" style="color: var(--danger-color, #ef4444);">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="app-root">
+    <!-- Konten SPA akan di-render di sini secara dinamis -->
+  </main>
+
+  <footer>
+    <p>&copy; 2026 TokoKita - E-Commerce Berkinerja Tinggi (Vanilla JS)</p>
+  </footer>
+
+  <!-- Diubah dari type="module" menjadi script biasa agar event listener DOMContentLoaded & fungsi global dapat berjalan tanpa hambatan scope -->
+  <script src="app.js"></script>
+</body>
+</html>
