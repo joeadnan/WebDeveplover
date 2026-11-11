@@ -23,3 +23,5 @@ tokokita-ecommerce-v2/
 1. Extract file zip `tokokita-ecommerce-v2.zip`.
 2. Buka folder `tokokita-ecommerce-v2/` di kode editor pilihan Anda.
 3. Jalankan `index.html` langsung di browser atau menggunakan Live Server.
+
+
