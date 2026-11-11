@@ -10,8 +10,7 @@ tokokita-ecommerce-v2/
 ├── app.js            # Logika SPA Router, State Management & Event Handling
 └── check-user.js     # Mengecek user yang telah terdaftar
 ├── create-admin.js   # create role admin
-├── server.js         # endPoint, jwt, CRUD
-├── server            # Logika SPA Router, State Management & Event Handling
+├── server.js         # Logika SPA Router, State Management & Event Handling
 └── README.md         # Dokumentasi petunjuk penggunaan
 ```
 
