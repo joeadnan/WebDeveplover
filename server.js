@@ -7,10 +7,13 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 
+const app = express();
+
 app.get('/', (req, res) => {
   res.status(200).json({
     success: true,
-    message: 'API TokoKita berhasil berjalan di Vercel!'
+    message: 'API TokoKita berhasil berjalan!',
+    status: 'online'
   });
 });
 
@@ -28,7 +31,6 @@ for (const key of requiredEnv) {
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-const app = express();
 
 const db = createClient({
   url: process.env.TURSO_DATABASE_URL,
