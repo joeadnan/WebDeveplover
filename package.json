@@ -26,6 +26,6 @@
     "sqlite3": true
   },
   "engines": {
-    "node": "22.x"
+    "node": "24.x"
   }
 }
