@@ -7,6 +7,13 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'API TokoKita berhasil berjalan di Vercel!'
+  });
+});
+
 const requiredEnv = [
   'TURSO_DATABASE_URL',
   'TURSO_AUTH_TOKEN',
