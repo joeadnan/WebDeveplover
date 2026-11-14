@@ -10,7 +10,7 @@ const db = createClient({
 async function createAdmin() {
   const name = 'Admin TokoKita';
   const email = 'admin@tokokita.com';
-  const rawPassword = 'password123';
+  const rawPassword = 'Admin123';
 
   try {
     const salt = await bcrypt.genSalt(10);
@@ -23,7 +23,7 @@ async function createAdmin() {
       `,
       args: [name, email.toLowerCase(), passwordHash]
     });
-
+    console.log(result);
     console.log('✅ Akun Admin Berhasil Dibuat!');
     console.log(`Email    : ${email}`);
     console.log(`Password : ${rawPassword}`);

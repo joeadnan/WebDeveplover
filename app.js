@@ -219,6 +219,7 @@ function cleanupEventListeners() {
 async function fetchProducts() {
   try {
     const response = await fetch(`${API_BASE_URL}/products`);
+   
     state.products = await response.json();
     if (window.location.hash === '#/' || window.location.hash === '') {
       renderCatalog();
