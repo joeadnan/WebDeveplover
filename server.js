@@ -4,24 +4,28 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { createClient } = require('@libsql/client');
 
-// 1. VALIDASI ENVIRONMENT VARIABLES
-if (!process.env.TURSO_DATABASE_URL || !process.env.TURSO_AUTH_TOKEN) {
-  console.error('ERROR: TURSO_DATABASE_URL atau TURSO_AUTH_TOKEN belum diatur di file .env');
-  process.exit(1);
+
+const requiredEnv = [
+  'TURSO_DATABASE_URL',
+  'TURSO_AUTH_TOKEN',
+  'JWT_SECRET'
+];
+
+for (const key of requiredEnv) {
+  if (!process.env[key]) {
+    throw new Error(`Environment variable ${key} belum diatur`);
+  }
 }
 
-const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret_key_tokokita_2026';
+const JWT_SECRET = process.env.JWT_SECRET;
 
-// 2. INISIALISASI EXPRESS & DATABASE (WAJIB DI ATAS)
 const app = express();
 
 const db = createClient({
   url: process.env.TURSO_DATABASE_URL,
-  authToken: process.env.TURSO_AUTH_TOKEN,
+  authToken: process.env.TURSO_AUTH_TOKEN
 });
-
 // 3. MIDDLEWARE UTAMA
 app.use(cors({
   origin: [
@@ -50,7 +54,7 @@ const { error } = require('console');
 
 // generate OTP 6 digit
 function generateOTP (){
-  return Math.floor(1000 + Math.random * 900000).toString();
+  return Math.floor(1000 + Math.random() * 900000).toString();
 }
 
 // Middleware Verifikasi JWT Token
@@ -543,7 +547,14 @@ app.patch('/api/admin/orders/:id', authenticateToken, requireAdmin, async (req, 
 // -------------------------------------------------------------
 // 8. JALANKAN SERVER
 // -------------------------------------------------------------
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server API TokoKita terhubung ke Turso & berjalan di http://localhost:${PORT}`);
-});
+// Jalankan server secara lokal
+if (require.main === module) {
+  const PORT = process.env.PORT || 5000;
+
+  app.listen(PORT, () => {
+    console.log(`Server berjalan di port ${PORT}`);
+  });
+}
+
+// Export untuk Vercel
+module.exports = app;
