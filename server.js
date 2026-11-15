@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path'); // <--- TAMBAHKAN INI
 const { createClient } = require('@libsql/client');
 
 const express = require('express');
@@ -6,10 +7,13 @@ const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-
 const app = express();
 
-app.get('/', (req, res) => {
+// 1. Sajikan file statis (index.html, app.js, style.css) dari folder 'public'
+app.use(express.static(path.join(__dirname, 'public')));
+
+// 2. Pindahkan cek status API dari '/' ke '/api'
+app.get('/api', (req, res) => {
   res.status(200).json({
     success: true,
     message: 'API TokoKita berhasil berjalan!',
@@ -22,6 +26,7 @@ const requiredEnv = [
   'TURSO_AUTH_TOKEN',
   'JWT_SECRET'
 ];
+// ... (biarkan bagian env, db, cors, dan seluruh endpoint /api/... Anda tetap sama seperti sebelumnya) ...
 
 for (const key of requiredEnv) {
   if (!process.env[key]) {
@@ -554,6 +559,9 @@ app.patch('/api/admin/orders/:id', authenticateToken, requireAdmin, async (req, 
   }
 });
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 // -------------------------------------------------------------
 // 8. JALANKAN SERVER
 // -------------------------------------------------------------

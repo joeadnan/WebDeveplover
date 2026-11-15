@@ -1,5 +1,8 @@
 // Konfigurasi URL Backend Express
-const API_BASE_URL = 'http://localhost:5000/api';
+// Konfigurasi URL Backend Express (Otomatis deteksi lokal vs Vercel)
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000/api'
+  : '/api';
 
 // State Utama Aplikasi
 const state = {
@@ -371,7 +374,7 @@ function renderCart() {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><strong>${item.name}</strong></td>
-      <td>${formatRupiah(item.price)}</td>
+      <td>${formatRupiah(item.price * item.qty)}</td>
       <td>
         <div class="qty-controls">
           <button class="qty-btn dec-btn" data-id="${item.id}">-</button>
